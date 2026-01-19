@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Scanner Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <span class="logo-icon">📡</span>
+                <h1>NetScan Pro</h1>
+            </div>
+            <ul class="nav-links">
+                <li class="active"><a href="#">Dashboard</a></li>
+                <li><a href="#" id="history-link">Scan History</a></li>
+                <li><a href="/api/report/download/">Download Report</a></li>
+            </ul>
+            <div class="qr-container">
+                <p>Scan for Mobile Access</p>
+                <img src="/api/qr/" alt="Access QR Code" class="qr-img">
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <div class="search-bar">
+                    <input type="text" id="ip-range" placeholder="Enter IP Range (e.g. 192.168.1.0/24)">
+                    <button id="scan-btn" class="btn-primary">Start Scan</button>
+                </div>
+            </header>
+
+            <!-- Stats Grid -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <h3>Active Devices</h3>
+                    <p id="device-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Last Scan</h3>
+                    <p id="last-scan-time">N/A</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Network Health</h3>
+                    <p id="network-health">Optimal</p>
+                </div>
+            </section>
+
+            <!-- Device Table -->
+            <section class="table-container glass">
+                <div class="table-header">
+                    <h2>Discovered Devices</h2>
+                </div>
+                <table id="device-table">
+                    <thead>
+                        <tr>
+                            <th>IP Address</th>
+                            <th>MAC Address</th>
+                            <th>Hostname</th>
+                            <th>Status</th>
+                            <th>Open Ports</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="device-list">
+                        <!-- Devices will be injected here -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for Device History -->
+    <div id="history-modal" class="modal">
+        <div class="modal-content glass">
+            <span class="close">&times;</span>
+            <h2>Device Scan History</h2>
+            <div id="history-details"></div>
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>
